@@ -1,3 +1,6 @@
+# solution 2: success message, changes in error message
+
+```JS
 import { useState } from 'react'
 import './App.css'
 import Header from './components/Header.tsx'
@@ -11,10 +14,10 @@ const SUCCESS_MESSAGES = {
   joiningDate: 'Joining Date is valid',
 }
   const ERROR_MESSAGES = {
-    name: 'Name must be at least 4 characters long',
-    email: 'Email must be a valid email address',
-    employeeID: 'Employee ID must be exactly 6 digits',
-    joiningDate: 'Joining Date cannot be in the future',
+    name: 'Name must be at least 4 characters long and only contain letters and spaces.',
+    email: 'Email must be a valid email address.',
+    employeeID: 'Employee ID must be exactly 6 digits.',
+    joiningDate: 'Joining Date cannot be in the future.',
   };
 
   const [form, setForm] = useState({
@@ -137,45 +140,11 @@ const SUCCESS_MESSAGES = {
   }
 
   // Check if all form fields are valid
-  const isFormValid = forms.every((form) => error[form.name as keyof typeof error] === '');
+  const isFormValid = forms.every((form) => error[form.name as keyof typeof error].includes('no error'));
 
-  const handleAutoFill = () => {
-    setForm({
-      name: 'John Doe',
-      email: 'john.doe@example.com',
-      employeeID: '123456',
-      joiningDate: '2024-01-01',
-    });
-    setError({
-      name: "",
-      email: "",
-      employeeID: "",
-      joiningDate: "",
-    });
-  }
-  const handleReset = () => {
-    setForm({
-      name: '',
-      email: '',
-      employeeID: '',
-      joiningDate: '',
-    });
-    setError({
-      name: ERROR_MESSAGES.name,
-      email: ERROR_MESSAGES.email,
-      employeeID: ERROR_MESSAGES.employeeID,
-      joiningDate: ERROR_MESSAGES.joiningDate,
-    });
-  }
-    return (
+  return (
     <>
-      <Header />
-        <button className="auto-fill-button" onClick={handleAutoFill}>
-          <i className="fa-solid fa-fill-drip icon"></i>
-          Auto Fill</button>
-        <button className="reset-button" onClick={handleReset}>
-          <i className="fa-solid fa-rotate-right icon"></i>
-          Reset</button>
+      <Header/>
       <div className="card">
         <form onSubmit={handleSubmit}>
           {forms.map((form) => (
@@ -202,3 +171,5 @@ const SUCCESS_MESSAGES = {
 }
 
 export default App
+
+```

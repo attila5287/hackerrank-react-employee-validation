@@ -25,7 +25,7 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
+  place-items: top;
   min-width: 320px;
   min-height: 100vh;
 }
@@ -65,4 +65,31 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+
+.icon{
+  margin-right: 10px;
+}
+
+.visible-submit{
+  width: 100%;
+  padding: 10px;
+  background-color: #23d919 ;
+  color: #000;
+}
+
+.auto-fill-button{
+  width: 50%;
+  background-color: #00fff2 ;
+  color: #000;
+  font-size: 0.8em;
+  padding: 0.15em;
+}
+.reset-button{
+  width: 50%;
+  background-color: #64077b ;
+  color: #ffffff;
+  font-size: 0.8em;
+  padding: 0.15em;
 }

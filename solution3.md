@@ -1,3 +1,6 @@
+# solution 3: auto-fill buttons and green-red success-error text all combined
+
+```JS
 import { useState } from 'react'
 import './App.css'
 import Header from './components/Header.tsx'
@@ -170,12 +173,8 @@ const SUCCESS_MESSAGES = {
     return (
     <>
       <Header />
-        <button className="auto-fill-button" onClick={handleAutoFill}>
-          <i className="fa-solid fa-fill-drip icon"></i>
-          Auto Fill</button>
-        <button className="reset-button" onClick={handleReset}>
-          <i className="fa-solid fa-rotate-right icon"></i>
-          Reset</button>
+      <button className="auto-fill-button" onClick={handleAutoFill}>Auto Fill</button>
+      <button className="reset-button" onClick={handleReset}>Reset</button>
       <div className="card">
         <form onSubmit={handleSubmit}>
           {forms.map((form) => (
@@ -202,3 +201,5 @@ const SUCCESS_MESSAGES = {
 }
 
 export default App
+
+```

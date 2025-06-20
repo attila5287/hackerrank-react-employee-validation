@@ -1,20 +1,22 @@
+# solution 1:
+
+| features and req's |
+| -- |
+| |
+
+
+```JS
 import { useState } from 'react'
 import './App.css'
 import Header from './components/Header.tsx'
 
 function App() {
   // Error message constants
-const SUCCESS_MESSAGES = {
-  name: 'Name is valid',
-  email: 'Email is valid',
-  employeeID: 'Employee ID is valid',
-  joiningDate: 'Joining Date is valid',
-}
   const ERROR_MESSAGES = {
     name: 'Name must be at least 4 characters long',
-    email: 'Email must be a valid email address',
-    employeeID: 'Employee ID must be exactly 6 digits',
-    joiningDate: 'Joining Date cannot be in the future',
+    email: 'Email must be a valid email address.',
+    employeeID: 'Employee ID must be exactly 6 digits.',
+    joiningDate: 'Joining Date cannot be in the future.',
   };
 
   const [form, setForm] = useState({
@@ -40,7 +42,7 @@ const SUCCESS_MESSAGES = {
     } else if (e.target.value.length < 4 || e.target.value.length > 20) {
       setError({ ...error, name: ERROR_MESSAGES.name });
     } else {
-      setError({ ...error, name: "" });
+      setError({ ...error, name: "name: no error" });
     }
   };  
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,7 +52,7 @@ const SUCCESS_MESSAGES = {
     } else if (!e.target.value.includes('@') || !e.target.value.includes('.') || e.target.value.includes(' ')) {
       setError({ ...error, email: ERROR_MESSAGES.email });
     } else {
-      setError({ ...error, email: "" });
+      setError({ ...error, email: "email: no error" });
     }
   };
   const handleEmployeeIDChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -60,7 +62,7 @@ const SUCCESS_MESSAGES = {
     } else if (e.target.value.length !== 6 || isNaN(Number(e.target.value))) {
       setError({ ...error, employeeID: ERROR_MESSAGES.employeeID });
     } else {
-      setError({ ...error, employeeID: "" });
+      setError({ ...error, employeeID: "employeeID: no error" });
     }
   };
   const handleJoiningDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -70,7 +72,7 @@ const SUCCESS_MESSAGES = {
     } else if (new Date(e.target.value) > new Date()) {
       setError({ ...error, joiningDate: ERROR_MESSAGES.joiningDate });
     } else {
-        setError({ ...error, joiningDate: "" });
+      setError({ ...error, joiningDate: "joiningDate: no error" });
     }
   };
   const handlers = {
@@ -137,55 +139,18 @@ const SUCCESS_MESSAGES = {
   }
 
   // Check if all form fields are valid
-  const isFormValid = forms.every((form) => error[form.name as keyof typeof error] === '');
+  const isFormValid = forms.every((form) => error[form.name as keyof typeof error].includes('no error'));
 
-  const handleAutoFill = () => {
-    setForm({
-      name: 'John Doe',
-      email: 'john.doe@example.com',
-      employeeID: '123456',
-      joiningDate: '2024-01-01',
-    });
-    setError({
-      name: "",
-      email: "",
-      employeeID: "",
-      joiningDate: "",
-    });
-  }
-  const handleReset = () => {
-    setForm({
-      name: '',
-      email: '',
-      employeeID: '',
-      joiningDate: '',
-    });
-    setError({
-      name: ERROR_MESSAGES.name,
-      email: ERROR_MESSAGES.email,
-      employeeID: ERROR_MESSAGES.employeeID,
-      joiningDate: ERROR_MESSAGES.joiningDate,
-    });
-  }
-    return (
+  return (
     <>
-      <Header />
-        <button className="auto-fill-button" onClick={handleAutoFill}>
-          <i className="fa-solid fa-fill-drip icon"></i>
-          Auto Fill</button>
-        <button className="reset-button" onClick={handleReset}>
-          <i className="fa-solid fa-rotate-right icon"></i>
-          Reset</button>
+      <Header/>
       <div className="card">
         <form onSubmit={handleSubmit}>
           {forms.map((form) => (
             <div key={form.name}>
               <label className="label">{form.label}</label>
               <input type={form.type} placeholder={form.placeholder} value={form.value} onChange={form.onChange} />
-              <p className="error-success-p">
-              <span className="error">{error[form.name as keyof typeof error] && error[form.name as keyof typeof error] }</span>
-              <span className="success">{!error[form.name as keyof typeof error] && SUCCESS_MESSAGES[form.name as keyof typeof SUCCESS_MESSAGES] }</span>
-              </p>
+              <p className="error">{error[form.name as keyof typeof error] && error[form.name as keyof typeof error] }</p>
             </div>
           ))}
           {/* IF ALL FORM IS VALID THEN SHOW SUBMIT BUTTON */}
@@ -202,3 +167,5 @@ const SUCCESS_MESSAGES = {
 }
 
 export default App
+
+```
